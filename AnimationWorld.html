@@ -1,0 +1,131 @@
+<script type="text/javascript">
+   var Limit=3;
+         window.onload =function(){
+            document.body.scrollTop=11;
+     var MYID="AnimationWorldIDAT14820223008";
+     let tpl=[];
+     let dataFrameSet=document.getElementsByClassName("dataFrameSet");
+     let p=document.getElementsByClassName("myDesc");
+     let click =0;
+     let  frame =document.getElementsByClassName("body");
+     let body=document.getElementById('body');
+     let head=document.getElementById("head");
+     let fetchDATA=postDATA.filter(function(fet){
+         return fet.id== MYID;
+     });
+     for (var i = 0; i < Limit; i++) {
+         tpl[i]=fetchDATA[i];
+     }
+     let showData =tpl.map(function(sd){
+         return "<div class='body'>"+"<div class='dataFrameSet'>"+"</div>"+"<p class='myDesc'>"+"</p>"+"</div>"+"<hr/>";
+     });
+     setTimeout(function(){
+         for(var i=0;i<dataFrameSet.length;i++){
+             let data = tpl[i].photos.map(function(x){
+                 return "<embed src='"+x+"'class='Myphoto'/>";
+             });
+             dataFrameSet[i].innerHTML=data.join("");
+         }
+     },100);
+     body.innerHTML=showData.join("");
+       tpl.forEach(function(v,i){
+           fetch(tpl[i].desc).then(x=>x.text()).then(y=>p[i].innerHTML=y);
+       });
+       setTimeout(function(){
+         for(var i=0;i<dataFrameSet.length;i++){
+         let touch =dataFrameSet[i].getElementsByClassName("Myphoto");
+         for(var t=0;t<touch.length;t++){
+             touch[t].onclick=function(){
+                localStorage.setItem("carryer",this.src);
+                open("support.html")
+             }
+         }
+     }
+ },100);
+      for(var i=0;i<dataFrameSet.length;i++){
+           let photo=dataFrameSet[i].getElementsByClassName("Myphoto");
+          setTimeout(function(){
+         switch (photo.length) {
+            case 1: for (var i = 0; i <photo.length; i++) {
+                photo[i].style.width = "100%";
+                photo[i].style.maxHeight = "440px";
+            };
+                break;
+
+            case 2:
+                for (var i = 0; i <photo.length; i++) {
+                    photo[i].style.width = "45%";
+                    photo[i].style.height="auto";
+                    photo[i].style.display="inline";
+                photo[i].style.margin="5px";
+                photo[0].style.marginLeft="15px"
+                    
+                }
+                break;
+
+            case 3:
+                photo[0].style.width = "45%";
+                photo[1].style.width = "45%";
+                photo[0].style.maxHeight = "215px";
+                photo[1].style.maxHeight = "215px";
+                photo[2].style.width = "45%";
+                photo[2].style.margin = "auto auto";
+                photo[2].style.display = "block";
+                photo[2].style.maxHeight = "215px";
+                photo[0].style.marginLeft="17px";
+                break;
+            case 4:
+                for (var i = 0; i <photo.length; i++) {
+                    photo[i].style.width = "44%";
+                    photo[i].style.maxHeight = "215px";
+                    photo[i].style.margin="11px"
+                    
+                }
+                break;
+        }
+          if(photo.length>4){
+              for(var h=4;h<photo.length;h++){
+                  photo[h].style.display="none";
+              }
+              for(var i=0;i<4;i++){
+                  photo[i].style.width="45%";
+                    photo[i].style.margin="8px"
+              }
+          }
+         },100);
+      }
+          for(var i=0;i<frame.length;i++){
+              frame[i].onclick=function(x){
+                  click +=1;
+            this.style.maxHeight="fit-content";
+     for(var j=0;j<dataFrameSet.length;j++){
+let photo=dataFrameSet[j].getElementsByClassName("Myphoto");
+     for(var k=0;k<photo.length;k++){
+         if(photo.length>4){
+             photo[k].style.display="inline";
+             photo[k].style.width="45%";
+         }
+     }
+  }
+ if(click == 2){
+     for(var i=0;i<dataFrameSet.length;i++){
+        var photo=dataFrameSet[i].getElementsByClassName("Myphoto");
+        for(var j=4;j<photo.length;j++){
+            photo[j].style.display="none";
+        }
+      }
+      this.style.maxHeight="550px";
+     return click=0;
+   }
+  }
+ }
+  let Info=PGSdata.filter(function(x){
+   return x.id == MYID;
+     });
+    let headInfo=Info.map(function(k){
+        return "<img src='"+k.embed+"'/>"+"<h1>"+k.name+"</h1>";
+    });
+ head.innerHTML=headInfo.join("");
+ setTimeout(DATE,10);
+} 
+    </script>

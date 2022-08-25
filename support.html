@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>support</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            user-select:none;
+        }embed{
+                width:100%;
+                height:auto;
+                border-radius:0px 0px 7px 7px;
+                box-shadow:0px 0px 6px #EEEEEE;
+                margin:100px auto 0px 0px;
+                display:block;
+        }a{
+            padding:5px 20px;
+            border:1.6px solid #969696;
+            display:block;
+            margin:30px auto;
+            width:fit-content;
+            border-radius:5px;
+            text-decoration:none;
+            color:white;
+            font-family:Times New Roman;
+        }
+        a:link{
+            background:#5F5F5F;
+        }
+        a:active{
+            background:#949494;
+        }
+    </style>
+</head>
+<body>
+    <embed id="data"src="img.jpg"/>
+    <a id="download"download>Save</a>
+    <script type="text/javascript">
+        window.addEventListener("load",function(){
+            let link =localStorage.getItem("carryer");
+            let embed=document.getElementById("data");
+            let button =document.getElementById("download");
+            embed.src=link;
+            button.href=link;
+        });
+    </script>
+</body>
+</html>
